@@ -13,10 +13,10 @@ function createFeatures(earthquakeData) {
   // Define a function we want to run once for each feature in the features array
   // Give each feature a popup describing the place and time of the earthquake
   function onEachFeature(feature, layer) {
-    layer.bindPopup("<h3> Magnitude: " + feature.properties.mag + "</h3><hr><p><b>" + feature.properties.place +
+      layer.bindPopup("<h3> Magnitude: " + feature.properties.mag + ", Depth: " + feature.geometry.coordinates[2] + "</h3><hr><p><b>" + feature.properties.place +
       "</b><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
-
+  
   // Create a GeoJSON layer containing the features array on the earthquakeData object
   // Run the onEachFeature function once for each piece of data in the array
   var earthquakes = L.geoJSON(earthquakeData, {
