@@ -8,6 +8,32 @@ d3.json(queryUrl).then(function(data) {
   createFeatures(data.features);
 });
 
+function getColor(depth) {
+  switch (true) {
+  case (depth <= 10):
+    return "Green";
+    break;
+  case (depth <= 30 && depth > 10):
+    return "GreenYellow";
+    break;
+  case (depth <= 50 && depth > 30):
+    return "Yellow";
+    break;
+  case (depth <= 70 && depth > 50):
+    return "Gold";
+    break;
+  case (depth <= 90 && depth > 70):
+    return "DarkOrange";
+    break;
+  case (depth > 90):
+    return "Red";
+    break;
+  default:
+    return "Gray";
+    break;
+  };
+};
+
 function createFeatures(earthquakeData) {
 
   // Define a function we want to run once for each feature in the features array
@@ -25,7 +51,8 @@ function createFeatures(earthquakeData) {
         radius: feature.properties.mag * 3,
         color: "black",
         weight: 1,
-        fillColor: "green",
+        //fillColor: "green",
+        fillColor: getColor(feature.geometry.coordinates[2]),
         fillOpacity: 0.75
       });
     },
