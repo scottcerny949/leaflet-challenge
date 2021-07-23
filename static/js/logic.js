@@ -73,3 +73,7 @@ function createMap(earthquakes) {
     collapsed: false
   }).addTo(myMap);
 }
+
+
+// depth = color
+// mag = size
