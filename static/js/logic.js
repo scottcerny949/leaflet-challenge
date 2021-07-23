@@ -22,7 +22,7 @@ function createFeatures(earthquakeData) {
   var earthquakes = L.geoJSON(earthquakeData, {
     pointToLayer: function(feature, latlng) {
       return new L.CircleMarker(latlng, {
-        radius: 6,
+        radius: feature.properties.mag * 3,
         color: "green",
         fillColor: "green",
         fillOpacity: 0.9
